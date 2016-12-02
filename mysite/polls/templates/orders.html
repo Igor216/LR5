@@ -1,0 +1,19 @@
+{% extends 'myfile.html' %}
+
+{% block title %} Заказы{% endblock %}
+
+{% block body %}
+    <ul class="list-group">
+        {% for order in orders %}
+            <li class="list-group-item"><a href="{% url 'order_url' order.id %}">{{ order.title }}</a></li>
+        {% empty %}
+            <li class="list-group-item disabled">пустой список</li>
+        {% endfor %}
+    </ul>
+{% endblock %}
+
+{%block header %}
+{% for order in orders %}
+          {%include 'order_element.html' with element=order%}
+          {% endfor %}
+{% endblock %}
